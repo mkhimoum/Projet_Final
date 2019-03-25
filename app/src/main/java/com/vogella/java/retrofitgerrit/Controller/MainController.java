@@ -1,10 +1,13 @@
 package com.vogella.java.retrofitgerrit.Controller;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.vogella.java.retrofitgerrit.data.RestApi;
+import com.vogella.java.retrofitgerrit.model.Constants;
+import com.vogella.java.retrofitgerrit.model.Exercice;
 import com.vogella.java.retrofitgerrit.model.RestExerciceResponse;
 import com.vogella.java.retrofitgerrit.presentation.MainActivity;
 
@@ -18,16 +21,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
     private MainActivity activity;
+    SharedPreferences sharedPreferences;
+    private boolean hasDataInDb() {
+        return sharedPreferences.contains(Constants.KEY);
 
+    }
 
 
     public MainController(MainActivity mainActivity){
         this.activity=mainActivity;
     }
-    public void onStart(){
-        if(hasDataInDb()){
+    public void onStart() {
+        /*if (hasDataInDb()) {
 
-        }else{
+        } else {*/
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
@@ -56,4 +63,5 @@ public class MainController {
 
     }
 
-}
+
+//}
